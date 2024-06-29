@@ -17,7 +17,7 @@ function generateSoundex(name) {
     let soundex = [name[0].toUpperCase()];
     let prevCode = getSoundexCode(name[0]);
 
-    prevCode = iterateChars(name, soundex, prevCode);
+    iterateChars(name, soundex, prevCode);
 
     while (soundex.length < 4) {
         soundex.push('0');
@@ -34,7 +34,6 @@ function iterateChars(name, soundex, prevCode) {
         }
         prevCode = code;
     }
-    return prevCode;
 }
 
 module.exports = {
