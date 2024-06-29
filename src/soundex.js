@@ -29,10 +29,14 @@ function generateSoundex(name) {
 function iterateChars(name, soundex, prevCode) {
     for (let i = 1; i < name.length && soundex.length < 4; i++) {
         let code = getSoundexCode(name[i]);
-        if (code !== '0' && code !== prevCode) {
-            soundex.push(code);
-        }
+        comparePrevAndCurrentCode(code, prevCode, soundex);
         prevCode = code;
+    }
+}
+
+function comparePrevAndCurrentCode(code, prevCode, soundex) {
+    if (code !== '0' && code !== prevCode) {
+        soundex.push(code);
     }
 }
 
@@ -40,6 +44,7 @@ module.exports = {
     getSoundexCode,
     generateSoundex
 };
+
 
 
 
