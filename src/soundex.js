@@ -17,13 +17,7 @@ function generateSoundex(name) {
     let soundex = [name[0].toUpperCase()];
     let prevCode = getSoundexCode(name[0]);
 
-    for (let i = 1; i < name.length && soundex.length < 4; i++) {
-        let code = getSoundexCode(name[i]);
-        if (code !== '0' && code !== prevCode) {
-            soundex.push(code);
-        }
-        prevCode = code;
-    }
+    prevCode = iterateChars(name, soundex, prevCode);
 
     while (soundex.length < 4) {
         soundex.push('0');
@@ -32,8 +26,21 @@ function generateSoundex(name) {
     return soundex.join('');
 }
 
+function iterateChars(name, soundex, prevCode) {
+    for (let i = 1; i < name.length && soundex.length < 4; i++) {
+        let code = getSoundexCode(name[i]);
+        if (code !== '0' && code !== prevCode) {
+            soundex.push(code);
+        }
+        prevCode = code;
+    }
+    return prevCode;
+}
+
 module.exports = {
     getSoundexCode,
     generateSoundex
 };
+
+
 
