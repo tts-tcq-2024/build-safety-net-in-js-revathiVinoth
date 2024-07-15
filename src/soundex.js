@@ -18,7 +18,7 @@ function generateSoundex(name) {
     let soundex = [name[0].toUpperCase()];
     let prevCode = getSoundexCode(name[0]);
 
-    iterateChars(name, soundex, prevCode);
+    iterateEachCharsAndCompare(name, soundex, prevCode);
 
     while (soundex.length < 4) {
         soundex.push('0');
@@ -27,7 +27,7 @@ function generateSoundex(name) {
     return soundex.join('');
 }
 
-function iterateChars(name, soundex, prevCode) {
+function iterateEachCharsAndCompare(name, soundex, prevCode) {
     for (let i = 1; i < name.length && soundex.length < 4; i++) {
         let code = getSoundexCode(name[i]);
         comparePrevAndCurrentCode(code, prevCode, soundex);
