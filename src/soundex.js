@@ -42,7 +42,6 @@ function comparePrevAndCurrentCode(code, prevCode, soundex) {
 }
 
 module.exports = {
-    getSoundexCode,
     generateSoundex
 };
 
